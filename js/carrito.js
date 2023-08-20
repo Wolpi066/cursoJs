@@ -87,7 +87,25 @@ const dibujarFooter = () => {
 
         footer.innerHTML = `
         <th><b>Totales:</b></th>
+        <td></td>
+        <td>Cantidad</td>
+        <td></td>
+        <td>Total</td>
         `
+
+        totalesCarrito.append(footer)
+    }else{
+        totalesCarrito.innerHTML = "<h3>No hay producto en carrito</h3>"
     }
 
+}
+
+const generarTotales = () => {
+    const costoTotal = carrito.reduce((total, {precio}) => total + precio, 0)
+    const cantidadTotal = carrito.reduce((total, {cantidad}) => total + cantidad, 0)
+
+    return{
+        costoTotal: costoTotal,
+        cantidadTotal: cantidadTotal
+    }
 }
