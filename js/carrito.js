@@ -69,8 +69,8 @@ const generarCarrito = () => {
         const btnAgregar = document.getElementById(`+${id}`)
         const btnSacar = document.getElementById(`-${id}`)
 
-        btnAgregar.addEventListener("click", () => )
-        btnSacar.addEventListener("click", () => )
+        btnAgregar.addEventListener("click", () => console.log())
+        btnSacar.addEventListener("click", () => console.log())
 
     });
 
