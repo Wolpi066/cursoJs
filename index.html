@@ -65,7 +65,7 @@
               Search
             </button>
           </form>
-          <div id="botonCarrito">
+          <div id="botonCarrito" class="bi bi-cart">
             <img id="imagenCarrito"
               src="https://media.istockphoto.com/id/1206806317/es/vector/icono-del-carrito-de-compras-aislado-sobre-fondo-blanco.jpg?s=612x612&w=0&k=20&c=sdScWRH_AeHdG6vHzMn8xUHCpe7iM6O1Skgi2lPuKG0="
               alt="carrito"
@@ -83,12 +83,20 @@
             <th>Imagen</th>
             <th>Nombre</th>
             <th>Unidades</th>
+            <th>Costo por unidad</th>
             <th>Costo</th>
             <th>Acciones</th>
           </tr>
         </thead>
         <tbody id="items"></tbody>
-        <tfoot id="totales"></tfoot>
+        <tfoot id="totales">
+          <tr>
+            <th colspan="2"><b>Totales:</b></th>
+            <td id="cantidadTotal"></td>
+            <td></td>
+            <td id="costoTotal"></td>
+          </tr>
+        </tfoot>
       </table>
     </div>
 

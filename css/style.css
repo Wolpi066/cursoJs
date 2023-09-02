@@ -10,3 +10,66 @@
     height: auto;
     margin: 0 20px 0 20px;
 }
+
+#carrito {
+    display: none;
+    position: fixed;
+    top: 10%;
+    right: 10%;
+    transform: translate(0, -10%);
+    width: 40%;
+    height: auto;
+    background-color: blanchedalmond;
+    z-index: 1001;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+#carrito th,
+#carrito td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+}
+
+#carrito th {
+    font-weight: bold;
+}
+
+#carrito tfoot th[colspan="2"] {
+    text-align: right;
+}
+
+#carrito tfoot td {
+    font-weight: bold;
+}
+
+#carrito img {
+    width: 80px;
+    height: 60px;
+    object-fit: cover;
+}
+
+#carrito .btn {
+    padding: 5px 10px;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#carrito .btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+#carrito .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+#carrito h3 {
+    text-align: center;
+    margin: 20px 0;
+}
