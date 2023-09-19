@@ -1,3 +1,5 @@
+import { generarProductos, productosDisponibles } from "./inicio.js";
+
 JSON.parse(sessionStorage.getItem("carrito")) === null &&
   sessionStorage.setItem("carrito", JSON.stringify([]));
 
@@ -11,14 +13,18 @@ const totalesCarrito = document.getElementById("totales");
 const btnCarrito = document.getElementById("botonCarrito");
 const carritoTabla = document.getElementById("carrito");
 
-btnCarrito.addEventListener("click", () => {
-  generarCarrito();
-  if (carritoTabla.style.display === "block") {
-    carritoTabla.style.display = "none";
-  } else {
-    carritoTabla.style.display = "block";
-  }
-});
+const calcularTotales = () => {
+  let cantidadTotal = 0;
+  let costoTotal = 0;
+  carrito.forEach((producto) => {
+    cantidadTotal += producto.cantidad;
+    costoTotal += producto.precio;
+  });
+  return {
+    cantidadTotal,
+    costoTotal,
+  };
+};
 
 const generarTotales = () => {
   const { cantidadTotal, costoTotal } = calcularTotales();
@@ -34,8 +40,8 @@ const generarCarrito = () => {
   if (carrito.length === 0) {
     const mensaje = document.createElement("tr");
     mensaje.innerHTML = `
-        <td colspan="6">No hay productos en el carrito</td>
-        `;
+      <td colspan="6">No hay productos en el carrito</td>
+      `;
     listaCarrito.append(mensaje);
   } else {
     carrito.forEach((producto) => {
@@ -43,15 +49,15 @@ const generarCarrito = () => {
       let body = document.createElement("tr");
       body.className = "productoCarrito";
       body.innerHTML = `
-            <th><img id=fotoProductoEnCarrito src="${imagen}" class="card-img-top" style="width:40%; height:30%"></th>
-            <td>${nombre}</td>
-            <td>${cantidad}</td>
-            <td>$${precio}</td>
-            <td>
-            <button id="+${id}" class="btn btn-success">+</button>
-            <button id="-${id}" class="btn btn-danger">-</button>
-            </td>
-        `;
+          <th><img id=fotoProductoEnCarrito src="${imagen}" class="card-img-top" style="width:40%; height:30%"></th>
+          <td>${nombre}</td>
+          <td>${cantidad}</td>
+          <td>$${precio}</td>
+          <td>
+          <button id="+${id}" class="btn btn-success">+</button>
+          <button id="-${id}" class="btn btn-danger">-</button>
+          </td>
+      `;
       listaCarrito.append(body);
 
       const btnAgregar = document.getElementById(`+${id}`);
@@ -69,6 +75,15 @@ const generarCarrito = () => {
     generarTotales();
   }
 };
+
+btnCarrito.addEventListener("click", () => {
+  generarCarrito();
+  if (carritoTabla.style.display === "block") {
+    carritoTabla.style.display = "none";
+  } else {
+    carritoTabla.style.display = "block";
+  }
+});
 
 export const comprarProducto = (idProducto) => {
   const producto = productosDisponibles.find(
@@ -125,22 +140,10 @@ const dibujarFooter = () => {
   }
 };
 
-const calcularTotales = () => {
-  let cantidadTotal = 0;
-  let costoTotal = 0;
-  carrito.forEach((producto) => {
-    cantidadTotal += producto.cantidad;
-    costoTotal += producto.precio;
-  });
-  return {
-    cantidadTotal,
-    costoTotal,
-  };
-};
-
 const aumentarCantidad = (id) => {
   const indexProducto = carrito.findIndex((producto) => producto.id === id);
-  const precio = carrito[indexProducto].precio / carrito[indexProducto].cantidad;
+  const precio =
+    carrito[indexProducto].precio / carrito[indexProducto].cantidad;
 
   carrito[indexProducto].cantidad++;
   carrito[indexProducto].precio = precio * carrito[indexProducto].cantidad;
@@ -152,7 +155,8 @@ const aumentarCantidad = (id) => {
 
 const disminuirCantidad = (id) => {
   const indexProducto = carrito.findIndex((producto) => producto.id === id);
-  const precio = carrito[indexProducto].precio / carrito[indexProducto].cantidad;
+  const precio =
+    carrito[indexProducto].precio / carrito[indexProducto].cantidad;
 
   carrito[indexProducto].cantidad--;
   carrito[indexProducto].precio = precio * carrito[indexProducto].cantidad;
