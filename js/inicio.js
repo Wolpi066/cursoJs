@@ -18,19 +18,19 @@ export const generarProductos = (productos) => {
 
     card.className = "producto";
     card.innerHTML = `
-    <div class="card" style="width: 18rem;">
-    <img src="${imagen}" class="card-img-top" alt="imagen producto">
-    <div class="card-body">
-    <h5 class="card-title">${nombre}</h5>
-    <p class="card-text">Precio: <b>$${precio}</b></p>
-    <button id="boton${id}" class="btn btn-primary">Añadir al carrito</button>
-  </div>
-</div>`;
+          <div class="card" style="width: 18rem;">
+          <img src="${imagen}" class="card-img-top" alt="imagen producto">
+          <div class="card-body">
+          <h5 class="card-title">${nombre}</h5>
+          <p class="card-text">Precio: <b>$${precio}</b></p>
+          <button id="boton${id}" class="btn btn-primary">Añadir al carrito</button>
+        </div>
+      </div>`;
 
-        divProductos.appendChild(card);
+    divProductos.appendChild(card);
 
-        const botonComprar = document.getElementById(`boton${id}`)
-        botonComprar.addEventListener("click", () => comprarProducto(id))
+    const botonComprar = document.getElementById(`boton${id}`)
+    botonComprar.addEventListener("click", () => comprarProducto(id))
 
   });
 };
